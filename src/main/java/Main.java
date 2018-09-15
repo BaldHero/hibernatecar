@@ -44,6 +44,8 @@ public class Main {
 //        Car foundById = carService.listById(1);
 //        System.out.println(foundById);
 
+//            System.out.println(car1.getAge());
+
             List<Car> carList;
             carList = carService.printAllCars();
             System.out.println(carList);

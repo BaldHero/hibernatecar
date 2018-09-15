@@ -70,6 +70,10 @@ public class Car {
         this.productionDate = productionDate;
     }
 
+    public int getAge() {
+        return LocalDate.now().getYear() - productionDate.getYear();
+    }
+
     public void setAge(int age) {
         this.age = age;
     }
