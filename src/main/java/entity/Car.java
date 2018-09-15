@@ -3,21 +3,9 @@ package entity;
 import javax.persistence.*;
 import java.time.LocalDate;
 
+// @Table(name = "SAMOCHÓD")
 @Entity
 public class Car {
-
-    public Car(String brand, String model, CarBodyType carBodyType, LocalDate productionDate, String color, long km) {
-        this.brand = brand;
-        this.model = model;
-        this.carBodyType = carBodyType;
-        this.productionDate = productionDate;
-        this.color = color;
-        this.km = km;
-        this.modifiedDate = LocalDate.now();
-    }
-
-    public Car() {
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,6 +36,19 @@ public class Car {
 
     @Column
     private LocalDate modifiedDate;
+
+    public Car(String brand, String model, CarBodyType carBodyType, LocalDate productionDate, String color, long km) {
+        this.brand = brand;
+        this.model = model;
+        this.carBodyType = carBodyType;
+        this.productionDate = productionDate;
+        this.color = color;
+        this.km = km;
+        this.modifiedDate = LocalDate.now();
+    }
+
+    public Car() {
+    }
 
     public void setId(Long id) {
         this.id = id;
