@@ -1,6 +1,7 @@
 import entity.Car;
 import entity.CarBodyType;
 import service.CarService;
+import util.HibernateUtils;
 import util.UserInput;
 import util.UserPrompts;
 
@@ -46,5 +47,6 @@ public class Main {
         carList = carService.printAllCars();
         System.out.println(carList);
 
+        HibernateUtils.getSessionFactory().close();
     }
 }
