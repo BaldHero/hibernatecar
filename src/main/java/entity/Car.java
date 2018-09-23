@@ -74,10 +74,6 @@ public class Car {
         return LocalDate.now().getYear() - productionDate.getYear();
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public void setColor(String color) {
         this.color = color;
     }

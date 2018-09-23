@@ -1,6 +1,7 @@
 package dao;
 
 import entity.Car;
+import entity.CarBodyType;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -58,6 +59,68 @@ public class CarDAO {
             session.close();
         }
         return car;
+    }
+
+    public List <Car> findByBrand(String brand) {
+        SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        List<Car> cars = new ArrayList<>();
+
+        try {
+            String query = "select c from Car c where brand = :brand";
+            cars = session.createQuery(query, Car.class)
+                    .setParameter("brand", brand)
+                    .getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return cars;
+    }
+
+    public List<Car> findByBodyType(CarBodyType carBodyType) {
+        SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        List<Car> cars = new ArrayList<>();
+
+        try {
+            String query = "select c from Car c where carBodyType = :carBodyType";
+            cars = session.createQuery(query, Car.class)
+                    .setParameter("carBodyType", carBodyType)
+                    .getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return cars;
+    }
+
+    public List<Car> findByProductionDate(LocalDate productionDate) {
+        SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        List<Car> cars = new ArrayList<>();
+
+        try {
+            String query = "select c from Car c where productionDate = :productionDate";
+            cars = session.createQuery(query, Car.class)
+                    .setParameter("productionDate", productionDate)
+                    .getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        if (cars.isEmpty()) {
+            try {
+                throw new Exception("There are no results that match your query.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return cars;
     }
 
     public void editCar(long id) {
@@ -133,5 +196,111 @@ public class CarDAO {
             session.close();
         }
         return cars;
+    }
+
+    public List<Car> findAllSortByBrand() {
+        SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        List<Car> cars = new ArrayList<>();
+
+        try {
+            String query = "Select c from Car c order by brand";
+            cars = session.createQuery(query, Car.class)
+                    .getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return cars;
+    }
+
+    public List<Car> findAllSortByProductionDate() {
+        SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        List<Car> cars = new ArrayList<>();
+
+        try {
+            String query = "Select c from Car c order by productionDate";
+            cars = session.createQuery(query, Car.class)
+                    .getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return cars;
+    }
+
+    public Car findYoungestCar() {
+        SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        Car car = new Car();
+
+        try {
+            String query = "Select c from Car c order by productionDate DESC";
+            car = session.createQuery(query, Car.class)
+                    .setMaxResults(1)
+                    .getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return car;
+    }
+
+    public Car findOldestCar() {
+        SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        Car car = new Car();
+
+        try {
+            String query = "Select c from Car c order by productionDate";
+            car = session.createQuery(query, Car.class)
+                    .setMaxResults(1)
+                    .getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return car;
+    }
+
+    public Car findCarWithLowestMileage() {
+        SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        Car car = new Car();
+
+        try {
+            String query = "Select c from Car c order by km";
+            car = session.createQuery(query, Car.class)
+                    .setMaxResults(1)
+                    .getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return car;
+    }
+
+    public Car findCarWithHighestMileage() {
+        SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        Car car = new Car();
+
+        try {
+            String query = "Select c from Car c order by km DESC";
+            car = session.createQuery(query, Car.class)
+                    .setMaxResults(1)
+                    .getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return car;
     }
 }
