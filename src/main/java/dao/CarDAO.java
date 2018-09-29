@@ -15,13 +15,13 @@ import java.util.List;
 
 public class CarDAO {
 
-    public static final int BRAND = 1;
-    public static final int MODEL = 2;
-    public static final int BODY_TYPE = 3;
-    public static final int COLOR = 4;
-    public static final int MILEAGE = 5;
-    public static final int PRODUCTION_DATE = 6;
-    public static final int SAVE_AND_EXIT = 0;
+    private static final int BRAND = 1;
+    private static final int MODEL = 2;
+    private static final int BODY_TYPE = 3;
+    private static final int COLOR = 4;
+    private static final int MILEAGE = 5;
+    private static final int PRODUCTION_DATE = 6;
+    private static final int SAVE_AND_EXIT = 0;
 
     private static UserPrompts userPrompts = new UserPrompts();
     private static UserInput userInput = new UserInput();
