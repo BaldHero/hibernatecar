@@ -2,19 +2,13 @@ import entity.Car;
 import entity.CarBodyType;
 import service.CarService;
 import util.HibernateUtils;
-import util.UserInput;
-import util.UserPrompts;
-
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
 
         try {
-//        UserInput userInput = new UserInput();
-//        UserPrompts userPrompts = new UserPrompts();
             CarService carService = new CarService();
 
             // Creating car objects
