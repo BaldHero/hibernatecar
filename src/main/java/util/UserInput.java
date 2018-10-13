@@ -18,12 +18,7 @@ public class UserInput {
         userPrompts.askForParameter();
         scanner = new Scanner(System.in);
         int parameter = 0;
-
-        try {
-            parameter = scanner.nextInt();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        parameter = scanner.nextInt();
         return parameter;
     }
 
